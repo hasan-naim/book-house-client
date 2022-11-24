@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
@@ -33,6 +34,16 @@ function SignUp() {
         photoURL: inputText.img,
       });
 
+      const backendRes = await axios.post("http://localhost:5000/user", {
+        name: inputText.name,
+        email: inputText.email,
+        img: inputText.img,
+        role: inputText.role,
+      });
+      if (!backendRes.data.insertedId) {
+        toast.error("Something went wrong");
+        return;
+      }
       setInputText({
         email: "",
         name: "",
