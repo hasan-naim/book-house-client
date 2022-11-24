@@ -149,7 +149,7 @@ function Navbar() {
             ) : (
               <Link
                 to={"/login"}
-                className="btn btn-primary bg-white text-white"
+                className="btn btn-outline  bg-transparent hover:bg-white hover:text-secondary border-2 hover:border-2 hover:border-transparent text-white"
               >
                 Login
               </Link>

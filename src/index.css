@@ -74,3 +74,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.text-gradient::selection {
+  -webkit-text-fill-color: white;
+}
