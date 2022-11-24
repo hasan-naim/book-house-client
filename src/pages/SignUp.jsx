@@ -39,6 +39,7 @@ function SignUp() {
         email: inputText.email,
         img: inputText.img,
         role: inputText.role,
+        verified: false,
       });
       if (!backendRes.data.insertedId) {
         toast.error("Something went wrong");
@@ -57,39 +58,8 @@ function SignUp() {
     } catch (err) {
       toast.error(err.message);
       console.log(err);
+      setBtnState(false);
     }
-
-    // signIn(inputText.email, inputText.pass)
-    //   .then((result) => {
-    //     const usr = result.user;
-    //     /// get jwt token
-    //     //   getJwtToken(usr);
-
-    //     /// update the user
-    //     updateUsr({
-    //       displayName: inputText.name,
-    //       photoURL: inputText.img,
-    //     })
-    //       .then((res) => {
-    //         setInputText({
-    //           email: "",
-    //           name: "",
-    //           img: "",
-    //           pass: "",
-    //         });
-    //         toast.success("Your Account Is created Successfully!");
-    //         navigate("/");
-    //         setBtnState(false);
-    //       })
-    //       .catch((err) => {
-    //         setBtnState(false);
-    //         toast.error(err.message);
-    //       });
-    //   })
-    //   .catch((err) => {
-    //     setBtnState(false);
-    //     toast.error(err.message);
-    //   });
   };
 
   return (

@@ -109,7 +109,7 @@ function Navbar() {
                 {user?.photoURL ? (
                   <>
                     <div className="avatar">
-                      <div className="w-8 rounded-full ring ring-white ring-offset-gray-100 ring-offset-2">
+                      <div className="w-8 rounded-full ring ring-gray-400 ring-offset-primary ring-offset">
                         <img src={user.photoURL} alt="profile" />
                       </div>
                     </div>
