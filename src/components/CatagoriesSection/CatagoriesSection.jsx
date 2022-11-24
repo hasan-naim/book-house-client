@@ -1,12 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 const fetchData = async () => {
-  const res = await axios.get("http://localhost:5000/catagories");
-  const data = res.data;
-  return data;
+  try {
+    const res = await axios.get("http://localhost:5000/catagories");
+    const data = res.data;
+    return data;
+  } catch (err) {
+    console.log(err);
+    toast.error(err.message);
+  }
 };
 
 function CatagoriesSection() {
@@ -15,6 +21,7 @@ function CatagoriesSection() {
     queryFn: fetchData,
   });
   if (error) {
+    toast.error(error.message);
     console.log(error);
     return;
   }

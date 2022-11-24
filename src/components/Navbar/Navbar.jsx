@@ -1,11 +1,12 @@
 import React from "react";
-// import { useContext } from "react";
+import { useContext } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 // import toast from "react-hot-toast";
 import logo from "../../assets/logo/logo.png";
-// import { AuthContext } from "../../Contexts/AuthProvider";
+import { AuthContext } from "../../Contexts/AuthProvider";
 function Navbar() {
-  //   const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
   const navItems = (
     <>
@@ -52,13 +53,13 @@ function Navbar() {
     </>
   );
 
-  //   const handleLogOut = () => {
-  //     logOut()
-  //       .then((res) => {
-  //         toast.success("You are successfully loged out!");
-  //       })
-  //       .catch((err) => toast.error(err.message));
-  //   };
+  const handleLogOut = () => {
+    logOut()
+      .then((res) => {
+        toast.success("You are successfully loged out!");
+      })
+      .catch((err) => toast.error(err.message));
+  };
 
   return (
     <div className="gradient-bg sticky top-0 w-full shadow-md backdrop-blur-sm z-10 ">
@@ -103,12 +104,12 @@ function Navbar() {
             <ul className="menu menu-horizontal p-0 space-x-2">{navItems}</ul>
           </div>
           <div className="navbar-end space-x-4">
-            {/* {user ? (
+            {user ? (
               <>
                 {user?.photoURL ? (
                   <>
                     <div className="avatar">
-                      <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                      <div className="w-8 rounded-full ring ring-white ring-offset-gray-100 ring-offset-2">
                         <img src={user.photoURL} alt="profile" />
                       </div>
                     </div>
@@ -140,16 +141,19 @@ function Navbar() {
                 )}
                 <button
                   onClick={handleLogOut}
-                  className="btn btn-outline btn-secondary p-1 sm:px-4"
+                  className="btn btn-outline hover:bg-primary p-1 sm:px-4"
                 >
                   Log Out
                 </button>
               </>
             ) : (
-              <Link to={"/login"} className="btn btn-primary text-white">
+              <Link
+                to={"/login"}
+                className="btn btn-primary bg-white text-white"
+              >
                 Login
               </Link>
-            )} */}
+            )}
           </div>
         </div>
       </div>
