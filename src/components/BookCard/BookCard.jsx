@@ -1,6 +1,6 @@
 import React from "react";
 
-function BookCard({ data, setReportBook }) {
+function BookCard({ data, setReportBook, setAddToListForm }) {
   const {
     _id,
     name,
@@ -64,7 +64,13 @@ function BookCard({ data, setReportBook }) {
             <strong> Selling Price:</strong> ${resalePrice}
           </p>
           <div className="mt-4 flex gap-3">
-            <button class="btn btn-secondary ">Add To List</button>
+            <label
+              onClick={() => setAddToListForm(data)}
+              htmlFor="my-modal-3"
+              class="btn btn-secondary "
+            >
+              Add To List
+            </label>
             <label
               onClick={() => setReportBook(data)}
               htmlFor="confirm-modal"

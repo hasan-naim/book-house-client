@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
+import AddToListForm from "../components/AddToListForm/AddToListForm";
 import BookCard from "../components/BookCard/BookCard";
 import ConfirmationModal from "../components/ConfirmationModal/ConfirmationModal";
 
@@ -9,6 +10,7 @@ function CatagoriePage() {
   const data = useLoaderData();
   console.log("data", data);
   const [reportBook, setReportBook] = useState({});
+  const [addToListForm, setAddToListForm] = useState({});
 
   const handleYes = async (id) => {
     try {
@@ -30,7 +32,12 @@ function CatagoriePage() {
         <div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {data.map((dt) => (
-              <BookCard key={dt._id} data={dt} setReportBook={setReportBook} />
+              <BookCard
+                key={dt._id}
+                data={dt}
+                setAddToListForm={setAddToListForm}
+                setReportBook={setReportBook}
+              />
             ))}
           </div>
         </div>
@@ -42,6 +49,7 @@ function CatagoriePage() {
         title={`Are You Sure You want To Report ${reportBook?.name} book?`}
         description={""}
       />
+      {addToListForm ? <AddToListForm data={addToListForm} /> : <></>}
     </section>
   );
 }
