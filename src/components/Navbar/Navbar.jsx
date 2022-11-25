@@ -5,53 +5,47 @@ import { Link } from "react-router-dom";
 // import toast from "react-hot-toast";
 import logo from "../../assets/logo/logo.png";
 import { AuthContext } from "../../Contexts/AuthProvider";
+
+const navItems = (
+  <>
+    <li>
+      <Link
+        to={"/"}
+        className="hover:bg-transparent text-white active:text-white hover:-translate-y-1 duration-500"
+      >
+        Home
+      </Link>
+    </li>
+    <li>
+      <Link
+        to={"/books"}
+        className="hover:bg-transparent text-white active:text-white hover:-translate-y-1 duration-500"
+      >
+        Books
+      </Link>
+    </li>
+    <li>
+      <Link
+        to={"/dashboard"}
+        className="hover:bg-transparent text-white active:text-white hover:-translate-y-1 duration-500"
+      >
+        Dashboard
+      </Link>
+    </li>
+
+    <li>
+      <Link
+        to={"/blog"}
+        className="hover:bg-transparent text-white active:text-white hover:-translate-y-1 duration-500"
+      >
+        Blog
+      </Link>
+    </li>
+  </>
+);
+
 function Navbar() {
   const { user, logOut } = useContext(AuthContext);
-
-  const navItems = (
-    <>
-      <li>
-        <Link
-          to={"/"}
-          className="hover:bg-transparent text-white active:text-white hover:-translate-y-1 duration-500"
-        >
-          Home
-        </Link>
-      </li>
-      <li>
-        <Link
-          to={"/meals"}
-          className="hover:bg-transparent text-white active:text-white hover:-translate-y-1 duration-500"
-        >
-          Meals
-        </Link>
-      </li>
-      <li>
-        <Link
-          to={"/myreviews"}
-          className="hover:bg-transparent text-white active:text-white hover:-translate-y-1 duration-500"
-        >
-          My Reviews
-        </Link>
-      </li>
-      <li>
-        <Link
-          to={"/addmeal"}
-          className="hover:bg-transparent text-white active:text-white hover:-translate-y-1 duration-500"
-        >
-          Add Meal
-        </Link>
-      </li>
-      <li>
-        <Link
-          to={"/blog"}
-          className="hover:bg-transparent text-white active:text-white hover:-translate-y-1 duration-500"
-        >
-          Blog
-        </Link>
-      </li>
-    </>
-  );
 
   const handleLogOut = () => {
     logOut()

@@ -3,9 +3,13 @@ import banner from "../../assets/banner/banner.png";
 function Banner() {
   return (
     <div>
-      <div className="relative">
+      <div className={`relative min-h-screen bg-red-700`}>
         <div>
-          <img src={banner} alt="" />
+          {banner ? (
+            <img src={banner} alt="" />
+          ) : (
+            <div className="min-h-screen bg-red-600"></div>
+          )}
         </div>
 
         <div className="absolute top-[120px] lg:top-[200px] left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
