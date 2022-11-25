@@ -1,3 +1,4 @@
+import DashBoardLayout from "../Layouts/DashBoardLayout";
 import MainLayout from "../Layouts/MainLayout";
 import CatagoriePage from "../pages/CatagoriePage";
 import ErrorPage from "../pages/ErrorPage";
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
         element: <ErrorPage />,
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashBoardLayout />,
+    children: [{}],
   },
 ]);
 

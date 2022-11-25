@@ -2,23 +2,17 @@ import React from "react";
 
 function BookCard({ data, setReportBook, setAddToListForm }) {
   const {
-    _id,
     name,
-    catagorie,
     img,
     sellerName,
     postedTime,
     originalPrice,
     resalePrice,
     usedTime,
-    verified,
     condition,
     phone,
     location,
     desc,
-    available,
-    advertised,
-    reported,
   } = data;
 
   return (

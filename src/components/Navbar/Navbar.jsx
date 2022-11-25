@@ -56,7 +56,7 @@ function Navbar() {
   };
 
   return (
-    <div className="gradient-bg sticky top-0 w-full shadow-md backdrop-blur-sm z-10 ">
+    <div className="gradient-bg sticky top-0 w-full shadow-md backdrop-blur-sm z-50 ">
       <div className="container">
         <div className="navbar p-0">
           <div className="navbar-start">
@@ -78,7 +78,7 @@ function Navbar() {
                 </svg>
               </label>
               <ul
-                tabIndex={0}
+                tabIndex={1}
                 className="menu menu-compact dropdown-content mt-3 p-2 shadow gradient-bg rounded-box w-52 space-y-1"
               >
                 {navItems}
@@ -149,6 +149,26 @@ function Navbar() {
               </Link>
             )}
           </div>
+          <label
+            htmlFor="my-drawer-2"
+            tabIndex={2}
+            className="btn btn-ghost lg:hidden"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+              />
+            </svg>
+          </label>
         </div>
       </div>
     </div>

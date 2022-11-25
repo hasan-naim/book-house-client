@@ -9,21 +9,8 @@ function AddToListForm({ data }) {
   const {
     _id,
     name,
-    catagorie,
-    img,
-    sellerName,
-    postedTime,
-    originalPrice,
+
     resalePrice,
-    usedTime,
-    verified,
-    condition,
-    phone,
-    location,
-    desc,
-    available,
-    advertised,
-    reported,
   } = data;
   const [inputText, setInputText] = useState({
     myPhone: "",
