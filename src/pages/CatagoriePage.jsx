@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 import AddToListForm from "../components/AddToListForm/AddToListForm";
@@ -11,6 +11,10 @@ function CatagoriePage() {
   console.log("data", data);
   const [reportBook, setReportBook] = useState({});
   const [addToListForm, setAddToListForm] = useState({});
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   const handleYes = async (id) => {
     try {

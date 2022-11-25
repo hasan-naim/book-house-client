@@ -5,6 +5,7 @@ import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
+import Blog from "../pages/Blog";
 import PrivetRote from "../PrivetRoute/PrivetRote";
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
       },
       {
         path: "/catagories/:id",
