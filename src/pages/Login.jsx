@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthProvider";
 
 function Login() {
@@ -13,6 +13,9 @@ function Login() {
   });
   const [btnState, setBtnState] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +31,8 @@ function Login() {
         pass: "",
       });
       toast.success("Your are Successfully Loged In!");
-      navigate("/");
+      navigate(from, { replace: true });
+
       setBtnState(false);
     } catch (err) {
       toast.error(err.message);
@@ -50,7 +54,7 @@ function Login() {
         role: "buyer",
         verified: false,
       });
-      navigate("/");
+      navigate(from, { replace: true });
       setBtnState(false);
     } catch (err) {
       toast.error(err.message);

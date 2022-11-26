@@ -13,7 +13,7 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <Toaster />
+        <Toaster position="top-right" reverseOrder={false} />
         <App />
       </AuthProvider>
     </QueryClientProvider>

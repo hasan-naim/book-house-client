@@ -7,6 +7,7 @@ import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Blog from "../pages/Blog";
 import PrivetRote from "../PrivetRoute/PrivetRote";
+import MyOrders from "../pages/Dashboard/MyOrders";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -49,8 +50,17 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashBoardLayout />,
-    children: [{}],
+    element: (
+      <PrivetRote>
+        <DashBoardLayout />
+      </PrivetRote>
+    ),
+    children: [
+      {
+        path: "/dashboard",
+        element: <MyOrders />,
+      },
+    ],
   },
 ]);
 

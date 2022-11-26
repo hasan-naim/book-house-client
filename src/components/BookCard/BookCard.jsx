@@ -17,21 +17,21 @@ function BookCard({ data, setReportBook, setAddToListForm }) {
 
   return (
     <>
-      <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md ">
+      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md ">
         <div className="w-full h-[284px] overflow-hidden rounded-t-lg">
           <img
-            class="w-full rounded-t-lg h-full bg-cover bg-center object-cover hover:scale-[1.2] duration-1000"
+            className="w-full rounded-t-lg h-full bg-cover bg-center object-cover hover:scale-[1.2] duration-1000"
             src={img}
             alt=""
           />
         </div>
-        <div class="p-5">
+        <div className="p-5">
           <div>
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
               {name}
             </h5>
           </div>
-          <p class="mb-3 font-normal text-gray-700 ">{desc}</p>
+          <p className="mb-3 font-normal text-gray-700 ">{desc}</p>
           <p className="text-gray-700">
             <strong> Seller:</strong> {sellerName}
           </p>
@@ -61,14 +61,14 @@ function BookCard({ data, setReportBook, setAddToListForm }) {
             <label
               onClick={() => setAddToListForm(data)}
               htmlFor="my-modal-3"
-              class="btn btn-secondary "
+              className="btn btn-secondary "
             >
               Add To List
             </label>
             <label
               onClick={() => setReportBook(data)}
               htmlFor="confirm-modal"
-              class="btn btn-primary "
+              className="btn btn-primary "
             >
               Report
             </label>

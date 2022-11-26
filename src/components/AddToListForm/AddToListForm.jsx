@@ -6,12 +6,7 @@ import { AuthContext } from "../../Contexts/AuthProvider";
 function AddToListForm({ data }) {
   const { user } = useContext(AuthContext);
   console.log(user);
-  const {
-    _id,
-    name,
-
-    resalePrice,
-  } = data;
+  const { _id, name, img, resalePrice } = data;
   const [inputText, setInputText] = useState({
     myPhone: "",
     address: "",
@@ -23,6 +18,8 @@ function AddToListForm({ data }) {
     e.preventDefault();
 
     const doc = {
+      paid: false,
+      bookImg: img,
       bookId: _id,
       bookName: name,
       price: resalePrice,
