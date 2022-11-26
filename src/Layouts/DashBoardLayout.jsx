@@ -1,22 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
+import { AuthContext } from "../Contexts/AuthProvider";
 
 function DashBoardLayout() {
+  const { userFromData } = useContext(AuthContext);
+
   return (
     <>
       <div>
         <Navbar />
 
-        <div className="drawer drawer-mobile">
+        <div className="drawer drawer-mobile h-auto">
           <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content p-8">
             <Outlet />
           </div>
-          <div className="drawer-side ">
+          <div className="drawer-side max-h-full h-auto">
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-            <ul className="menu p-4 w-80 bg-slate-300 text-base-content">
+            <ul className="menu p-4 w-80 bg-slate-300 text-base-content space-y-1">
+              {/* buyer */}
               <li>
                 <Link to="/dashboard" className="font-bold">
                   <svg
@@ -36,9 +40,30 @@ function DashBoardLayout() {
                   My Orders
                 </Link>
               </li>
-              <li>
-                <a>Sidebar Item 2</a>
-              </li>
+              {/* seller and admin */}
+              {userFromData && userFromData.role !== "buyer" ? (
+                <li>
+                  <Link to="/dashboard/addbooks" className="font-bold">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={3}
+                      stroke="currentColor"
+                      className="w-5 h-5 font-bold"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    Add Book
+                  </Link>
+                </li>
+              ) : (
+                <></>
+              )}
             </ul>
           </div>
         </div>

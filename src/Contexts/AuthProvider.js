@@ -10,6 +10,8 @@ import {
   updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 export const AuthContext = createContext({});
 const auth = getAuth(app);
 
@@ -18,6 +20,16 @@ const googleProvder = new GoogleAuthProvider();
 function AuthProvider({ children }) {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
+
+  const { data: userFromData } = useQuery({
+    queryKey: ["user", user],
+    queryFn: async () => {
+      const res = await axios.get(
+        `http://localhost:5000/user?email=${user?.email}`
+      );
+      return res.data;
+    },
+  });
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (crntUsr) => {
@@ -61,6 +73,7 @@ function AuthProvider({ children }) {
     logOut,
     signIn,
     updateUsr,
+    userFromData: userFromData ? userFromData : null,
     logIn,
     googleLogin,
   };

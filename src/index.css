@@ -77,3 +77,7 @@
 .text-gradient::selection {
   -webkit-text-fill-color: white;
 }
+
+.drawer-side {
+  max-height: 100% !important;
+}
