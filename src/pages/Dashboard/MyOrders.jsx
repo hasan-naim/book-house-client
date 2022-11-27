@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import toast from "react-hot-toast";
 import AddedBookCard from "../../components/AddedBookCard/AddedBookCard";
 import Loading from "../../components/Loading/Loading";
@@ -19,6 +19,9 @@ export default function MyOrders() {
     queryKey: ["orders", userEmail],
     queryFn: () => fetchData(userEmail),
   });
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   if (isError) {
     console.log("error from MyOrders component by fetching data", error);
@@ -48,7 +51,7 @@ export default function MyOrders() {
         </h1>
 
         {data.userAddedData.length > 0 ? (
-          <div className="grid xl:grid-cols-2 gap-8">
+          <div className="grid xl:grid-cols-1 gap-8">
             {data.userAddedData.map((dt) => {
               return <AddedBookCard key={dt._id} data={dt} />;
             })}

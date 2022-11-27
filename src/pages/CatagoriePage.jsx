@@ -8,7 +8,6 @@ import ConfirmationModal from "../components/ConfirmationModal/ConfirmationModal
 
 function CatagoriePage() {
   const data = useLoaderData();
-  console.log("data", data);
   const [reportBook, setReportBook] = useState({});
   const [addToListForm, setAddToListForm] = useState({});
 

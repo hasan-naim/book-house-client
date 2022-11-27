@@ -1,11 +1,14 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
 function AddBooks() {
   const { userFromData } = useContext(AuthContext);
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const [inputText, setInputText] = useState({
     name: "",
     catagorie: "Biography",
@@ -24,23 +27,7 @@ function AddBooks() {
     reported: false,
   });
   const [btnState, setBtnState] = useState(false);
-  //
-  /// name
-  /// catagorie
-  /// img
-  /// sellerName
-  /// postedTime
-  /// originalPrice
-  /// resalePrice
-  /// usedTime
-  /// verified
-  /// condition
-  /// phone
-  /// location
-  /// desc
-  /// available
-  /// advertised
-  /// reported
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,9 +56,9 @@ function AddBooks() {
         location: "",
         desc: "",
         available: true,
-        advertised: false,
         reported: false,
       });
+      navigate("/dashboard/myaddedbooks");
     } catch (err) {
       console.log(err);
       toast.error(err.message);
@@ -234,7 +221,7 @@ function AddBooks() {
               className="textarea textarea-bordered w-full bg-white"
               value={inputText.desc}
               onChange={(e) =>
-                setInputText({ ...inputText, name: e.target.value })
+                setInputText({ ...inputText, desc: e.target.value })
               }
               type="text"
               placeholder="Book Details"
