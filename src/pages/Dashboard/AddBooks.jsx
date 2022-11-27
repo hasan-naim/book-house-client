@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
+import { AuthContext } from "../../Contexts/AuthProvider";
 
 function AddBooks() {
+  const { userFromData } = useContext(AuthContext);
+
   const [inputText, setInputText] = useState({
     name: "",
     catagorie: "Biography",
     img: "",
-    sellerName: "",
-    postedTime: "",
+
     originalPrice: "",
     resalePrice: "",
     usedTime: "",
@@ -38,9 +42,40 @@ function AddBooks() {
   /// advertised
   /// reported
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(inputText);
+    const doc = {
+      ...inputText,
+      postUserId: userFromData?._id,
+      postedTime: new Date(),
+      sellerName: userFromData?.name,
+    };
+
+    try {
+      const res = await axios.post("http://localhost:5000/addBook", doc);
+      console.log(res.data.message);
+      toast.success(`Your Book ${inputText.name} is added to the website.`);
+      setInputText({
+        name: "",
+        catagorie: "Biography",
+        img: "",
+        originalPrice: "",
+        resalePrice: "",
+        usedTime: "",
+        verified: false,
+        condition: "",
+        phone: "",
+        location: "",
+        desc: "",
+        available: true,
+        advertised: false,
+        reported: false,
+      });
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    }
   };
 
   return (
@@ -58,6 +93,7 @@ function AddBooks() {
               Book Name
             </label>
             <input
+              required
               value={inputText.name}
               onChange={(e) =>
                 setInputText({ ...inputText, name: e.target.value })
@@ -73,6 +109,7 @@ function AddBooks() {
               Book Image
             </label>
             <input
+              required
               value={inputText.img}
               onChange={(e) =>
                 setInputText({ ...inputText, img: e.target.value })
@@ -103,6 +140,7 @@ function AddBooks() {
               Original Price
             </label>
             <input
+              required
               value={inputText.originalPrice}
               onChange={(e) =>
                 setInputText({ ...inputText, originalPrice: e.target.value })
@@ -117,6 +155,7 @@ function AddBooks() {
               Selling Price
             </label>
             <input
+              required
               value={inputText.resalePrice}
               onChange={(e) =>
                 setInputText({ ...inputText, resalePrice: e.target.value })
@@ -131,6 +170,7 @@ function AddBooks() {
               Used Time
             </label>
             <input
+              required
               value={inputText.usedTime}
               onChange={(e) =>
                 setInputText({ ...inputText, usedTime: e.target.value })
@@ -145,6 +185,7 @@ function AddBooks() {
               Condition
             </label>
             <input
+              required
               value={inputText.condition}
               onChange={(e) =>
                 setInputText({ ...inputText, condition: e.target.value })
@@ -173,6 +214,7 @@ function AddBooks() {
               Phone
             </label>
             <input
+              required
               value={inputText.phone}
               onChange={(e) =>
                 setInputText({ ...inputText, phone: e.target.value })
@@ -202,7 +244,14 @@ function AddBooks() {
             <label htmlFor="name" className="font-medium">
               Advertise
             </label>
-            <input type="checkbox" className="checkbox" />
+            <input
+              type="checkbox"
+              defaultChecked={inputText.advertised}
+              onChange={(e) =>
+                setInputText({ ...inputText, advertised: e.target.checked })
+              }
+              className="checkbox"
+            />
           </div>
           <div className="mt-6">
             <button
