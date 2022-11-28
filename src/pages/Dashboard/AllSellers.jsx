@@ -45,9 +45,9 @@ function AllSellers() {
       console.log(res);
       refetch();
       if (condition) {
-        toast.success("Your book will now advertise on our website.");
+        toast.success("User is verified now");
       } else {
-        toast.error("Your book is not advertised on our website.");
+        toast.success("User is not verified anymore.");
       }
     } catch (err) {
       console.log(err);
@@ -71,12 +71,12 @@ function AllSellers() {
         {data.data.length === 0 ? (
           <>
             <h1 className="text-xl text-center lg:text-5xl text-gray-400 font-medium">
-              There is no buyer.
+              There is no Seller.
             </h1>
           </>
         ) : (
           <h1 className="text-center text-xl lg:text-4xl font-medium text-slate-800 mb-8">
-            All Buyers
+            All Sellers
           </h1>
         )}
 
