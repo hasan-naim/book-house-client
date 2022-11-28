@@ -57,7 +57,10 @@ function MyAddedBooks() {
       } else {
         toast.error("Your book is not advertised on our website.");
       }
-    } catch (error) {}
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    }
   };
 
   return (

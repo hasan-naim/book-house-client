@@ -1,6 +1,10 @@
-import React from "react";
+import { useQueries, useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 function BookCard({ data, setReportBook, setAddToListForm }) {
+  const [userInfo, setUserInfo] = useState({});
   const {
     name,
     img,
@@ -13,7 +17,28 @@ function BookCard({ data, setReportBook, setAddToListForm }) {
     phone,
     location,
     desc,
+    postUserId,
   } = data;
+
+  useEffect(() => {
+    if (postUserId) {
+      axios
+        .get(
+          `https://book-house-server-three.vercel.app/singleUser?id=${postUserId}`
+        )
+        .then((res) => {
+          console.log(res.data);
+          setUserInfo(res.data);
+        })
+        .catch((err) => {
+          toast.error(err.message);
+          console.log(err);
+        });
+    }
+  }, [postUserId]);
+
+  if (postUserId) {
+  }
 
   return (
     <>
@@ -32,8 +57,26 @@ function BookCard({ data, setReportBook, setAddToListForm }) {
             </h5>
           </div>
           <p className="mb-3 font-normal text-gray-700 ">{desc}</p>
-          <p className="text-gray-700">
+          <p className="text-gray-700 flex gap-1">
             <strong> Seller:</strong> {sellerName}
+            {userInfo?.verified ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={3}
+                stroke="currentColor"
+                className="w-6 h-6 text-blue-700"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
+                />
+              </svg>
+            ) : (
+              <></>
+            )}
           </p>
           <p className="text-gray-700">
             <strong> Posted:</strong> {postedTime.slice(0, 10)}

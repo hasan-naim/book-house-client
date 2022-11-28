@@ -13,6 +13,7 @@ import AdminSellerPrivateRoute from "../PrivetRoute/AdminSellerPrivateRoute";
 import AdminOnlyPrivateRoute from "../PrivetRoute/AdminOnlyPrivateRoute";
 import MyAddedBooks from "../pages/Dashboard/MyAddedBooks";
 import AllBuyers from "../pages/Dashboard/AllBuyers";
+import AllSellers from "../pages/Dashboard/AllSellers";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -88,6 +89,14 @@ const router = createBrowserRouter([
         element: (
           <AdminOnlyPrivateRoute>
             <AllBuyers />
+          </AdminOnlyPrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/allsellers",
+        element: (
+          <AdminOnlyPrivateRoute>
+            <AllSellers />
           </AdminOnlyPrivateRoute>
         ),
       },
