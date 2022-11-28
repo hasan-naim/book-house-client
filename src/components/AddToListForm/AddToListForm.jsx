@@ -28,7 +28,10 @@ function AddToListForm({ data }) {
       userAddress: inputText.address,
     };
     try {
-      const res = await axios.post("http://localhost:5000/addtolist", doc);
+      const res = await axios.post(
+        "https://book-house-server-three.vercel.app/addtolist",
+        doc
+      );
       console.log(res.data);
       if (res.data.insertedId) {
         toast.success(`${name} is added to your list.`);

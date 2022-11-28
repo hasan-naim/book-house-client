@@ -14,7 +14,7 @@ function MyAddedBooks() {
     queryKey: ["addedbooks", userFromData],
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/myaddedbooks?userId=${userFromData?._id}`
+        `https://book-house-server-three.vercel.app/myaddedbooks?userId=${userFromData?._id}`
       );
       return res.data;
     },
@@ -35,7 +35,7 @@ function MyAddedBooks() {
 
   const handleYes = async (selectedDataId) => {
     const res = await axios.delete(
-      `http://localhost:5000/book?id=${selectedDataId}`
+      `https://book-house-server-three.vercel.app/book?id=${selectedDataId}`
     );
     if (res.data.deletedCount === 1) {
       toast.success("Your book is deleted succesfully.");
@@ -48,7 +48,7 @@ function MyAddedBooks() {
   const advertiseTheBook = async (condition, id) => {
     try {
       const res = await axios.patch(
-        `http://localhost:5000/advertise?id=${id}&condition=${condition}`
+        `https://book-house-server-three.vercel.app/advertise?id=${id}&condition=${condition}`
       );
       console.log(res.data);
       refetch();

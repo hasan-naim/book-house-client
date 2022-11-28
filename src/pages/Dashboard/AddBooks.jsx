@@ -40,7 +40,10 @@ function AddBooks() {
     };
 
     try {
-      const res = await axios.post("http://localhost:5000/addBook", doc);
+      const res = await axios.post(
+        "https://book-house-server-three.vercel.app/addBook",
+        doc
+      );
       console.log(res.data.message);
       toast.success(`Your Book ${inputText.name} is added to the website.`);
       setInputText({

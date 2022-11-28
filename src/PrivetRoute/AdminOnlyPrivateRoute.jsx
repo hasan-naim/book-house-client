@@ -7,7 +7,7 @@ function AdminSellerPrivateRoute({ children }) {
   const { userFromData } = useContext(AuthContext);
   const location = useLocation();
 
-  if (!userFromData) {
+  if (userFromData === null) {
     return (
       <>
         <Loading />
@@ -15,7 +15,7 @@ function AdminSellerPrivateRoute({ children }) {
     );
   }
 
-  if (userFromData?.role !== "buyer") {
+  if (userFromData?.role === "admin") {
     return children;
   }
 

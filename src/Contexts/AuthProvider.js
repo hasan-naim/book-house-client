@@ -19,28 +19,30 @@ const googleProvder = new GoogleAuthProvider();
 
 function AuthProvider({ children }) {
   const [user, setUser] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  const { data: userFromData } = useQuery({
+  const { data: userFromData, refetch } = useQuery({
     queryKey: ["user", user],
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/user?email=${user?.email}`
+        `https://book-house-server-three.vercel.app/user?email=${user?.email}`
       );
+      setLoading(false);
       return res.data;
     },
   });
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (crntUsr) => {
-      setUser(crntUsr);
       setLoading(false);
+      setUser(crntUsr);
+      refetch();
     });
 
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [refetch]);
 
   const updateUsr = (info) => {
     setLoading(true);
@@ -73,7 +75,7 @@ function AuthProvider({ children }) {
     logOut,
     signIn,
     updateUsr,
-    userFromData: userFromData ? userFromData : null,
+    userFromData,
     logIn,
     googleLogin,
   };

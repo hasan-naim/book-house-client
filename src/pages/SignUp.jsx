@@ -37,13 +37,16 @@ function SignUp() {
         photoURL: inputText.img,
       });
 
-      const backendRes = await axios.post("http://localhost:5000/user", {
-        name: inputText.name,
-        email: inputText.email,
-        img: inputText.img,
-        role: inputText.role,
-        verified: false,
-      });
+      const backendRes = await axios.post(
+        "https://book-house-server-three.vercel.app/user",
+        {
+          name: inputText.name,
+          email: inputText.email,
+          img: inputText.img,
+          role: inputText.role,
+          verified: false,
+        }
+      );
       if (!backendRes.data.insertedId) {
         toast.error("Something went wrong");
         return;

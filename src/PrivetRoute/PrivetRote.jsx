@@ -9,6 +9,7 @@ function PrivetRote({ children }) {
   const location = useLocation();
 
   if (loading) {
+    console.log("loading");
     return <Loading />;
   }
 

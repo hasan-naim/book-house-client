@@ -17,9 +17,12 @@ function CatagoriePage() {
 
   const handleYes = async (id) => {
     try {
-      const res = await axios.patch(`http://localhost:5000/report/${id}`, {
-        reported: true,
-      });
+      const res = await axios.patch(
+        `https://book-house-server-three.vercel.app/report/${id}`,
+        {
+          reported: true,
+        }
+      );
       console.log(res.data);
       toast.success("You have Successfully Reported!");
     } catch (err) {

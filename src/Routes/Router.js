@@ -10,7 +10,9 @@ import PrivetRote from "../PrivetRoute/PrivetRote";
 import MyOrders from "../pages/Dashboard/MyOrders";
 import AddBooks from "../pages/Dashboard/AddBooks";
 import AdminSellerPrivateRoute from "../PrivetRoute/AdminSellerPrivateRoute";
+import AdminOnlyPrivateRoute from "../PrivetRoute/AdminOnlyPrivateRoute";
 import MyAddedBooks from "../pages/Dashboard/MyAddedBooks";
+import AllBuyers from "../pages/Dashboard/AllBuyers";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -43,7 +45,9 @@ const router = createBrowserRouter([
           </PrivetRote>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/catagories/${params.id}`),
+          fetch(
+            `https://book-house-server-three.vercel.app/catagories/${params.id}`
+          ),
       },
       {
         path: "*",
@@ -77,6 +81,14 @@ const router = createBrowserRouter([
           <AdminSellerPrivateRoute>
             <MyAddedBooks />
           </AdminSellerPrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/allbuyers",
+        element: (
+          <AdminOnlyPrivateRoute>
+            <AllBuyers />
+          </AdminOnlyPrivateRoute>
         ),
       },
     ],

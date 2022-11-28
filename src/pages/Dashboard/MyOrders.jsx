@@ -7,7 +7,7 @@ import Loading from "../../components/Loading/Loading";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
 const fetchData = async (email) => {
-  const res = await axios.get(`http://localhost:5000/orders?email=${email}`);
+  const res = await axios.get(`https://book-house-server-three.vercel.app/orders?email=${email}`);
   const data = res.data;
   return data;
 };

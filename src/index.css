@@ -78,6 +78,10 @@
   -webkit-text-fill-color: white;
 }
 
+.btn-xs {
+  @apply min-h-6 h-6;
+}
+
 .drawer-side {
   max-height: 100% !important;
 }

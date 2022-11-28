@@ -47,13 +47,16 @@ function Login() {
     try {
       const { user } = await googleLogin();
 
-      const backendRes = await axios.post("http://localhost:5000/googleUser", {
-        name: user.displayName,
-        email: user.email,
-        img: user.photoURL,
-        role: "buyer",
-        verified: false,
-      });
+      const backendRes = await axios.post(
+        "https://book-house-server-three.vercel.app/googleUser",
+        {
+          name: user.displayName,
+          email: user.email,
+          img: user.photoURL,
+          role: "buyer",
+          verified: false,
+        }
+      );
       navigate(from, { replace: true });
       setBtnState(false);
     } catch (err) {

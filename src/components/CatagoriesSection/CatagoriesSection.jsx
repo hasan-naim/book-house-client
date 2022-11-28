@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 
 const fetchData = async () => {
   try {
-    const res = await axios.get("http://localhost:5000/catagories");
+    const res = await axios.get(
+      "https://book-house-server-three.vercel.app/catagories"
+    );
     const data = res.data;
     return data;
   } catch (err) {
