@@ -37,6 +37,7 @@ function SignUp() {
         photoURL: inputText.img,
       });
 
+      getJwtToken(user);
       const backendRes = await axios.post(
         "https://book-house-server-three.vercel.app/user",
         {
@@ -66,6 +67,21 @@ function SignUp() {
       console.log(err);
       setBtnState(false);
     }
+  };
+
+  const getJwtToken = (user) => {
+    axios
+      .post("https://your-kitch-ph-assignment-11-backend.vercel.app/jwt", {
+        email: user.email,
+      })
+      .then((res) => {
+        if (res.data.status === 200) {
+          localStorage.setItem("bookhousetoken", res.data.token);
+        }
+      })
+      .catch((err) => {
+        toast.error(`${err.message} Login Again`);
+      });
   };
 
   return (

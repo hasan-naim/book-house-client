@@ -7,7 +7,14 @@ import Loading from "../../components/Loading/Loading";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
 const fetchData = async (email) => {
-  const res = await axios.get(`https://book-house-server-three.vercel.app/orders?email=${email}`);
+  const res = await axios.get(
+    `https://book-house-server-three.vercel.app/orders?email=${email}`,
+    {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("bookhousetoken")}`,
+      },
+    }
+  );
   const data = res.data;
   return data;
 };

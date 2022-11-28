@@ -30,6 +30,7 @@ function Login() {
         email: "",
         pass: "",
       });
+      getJwtToken(user);
       toast.success("Your are Successfully Loged In!");
       navigate(from, { replace: true });
 
@@ -57,6 +58,7 @@ function Login() {
           verified: false,
         }
       );
+      getJwtToken(user);
       navigate(from, { replace: true });
       setBtnState(false);
     } catch (err) {
@@ -69,6 +71,21 @@ function Login() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
+  const getJwtToken = (user) => {
+    axios
+      .post("https://your-kitch-ph-assignment-11-backend.vercel.app/jwt", {
+        email: user.email,
+      })
+      .then((res) => {
+        if (res.data.status === 200) {
+          localStorage.setItem("bookhousetoken", res.data.token);
+        }
+      })
+      .catch((err) => {
+        toast.error(`${err.message} Login Again`);
+      });
+  };
 
   return (
     <section className="my-12">
